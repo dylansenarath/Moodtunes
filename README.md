@@ -1,24 +1,34 @@
-\# MoodTunes: Emotion-Aware Music Recommender
+\## Quickstart
+
+```bash
+
+\# 1. Create virtual environment
+
+python -m venv .venv
+
+.\\.venv\\Scripts\\activate   # Windows
 
 
 
-This project predicts emotions from text (GoEmotions dataset) and recommends songs using lyrics-derived emotion embeddings (emotions4midi).
+\# 2. Install dependencies
+
+pip install -r requirements.txt
 
 
 
-\## Tech
+\# 3. Run training (example)
 
-\- Python, PyTorch, Hugging Face Transformers
+python src/moodtunes\_train.py ^
 
-\- Pandas, NumPy, scikit-learn
+&nbsp; --data-root path\\to\\project\\goemotions\_data ^
 
-\- Streamlit (optional demo)
+&nbsp; --epochs 5 ^
+
+&nbsp; --batch-size 32
 
 
-
-\## Status
-
-🚀 Work in progress — first commit
+## Project Presentation
+For system architecture and example outputs, see the [MoodTunes Presentation](assets/MoodTunes_Presentation.pdf).
 
 
 
