@@ -13,6 +13,7 @@ from sklearn.metrics import classification_report, f1_score, precision_recall_cu
 from torch.utils.data import Dataset, DataLoader
 from tqdm import tqdm
 from transformers import AutoTokenizer, DistilBertModel, get_linear_schedule_with_warmup
+from src.model import CustomDistilBERT
 
 # NLTK (safe import/download)
 import nltk
@@ -454,7 +455,9 @@ def main():
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, collate_fn=collate_fn)
     dev_loader = DataLoader(dev_dataset, batch_size=args.batch_size, shuffle=False, collate_fn=collate_fn)
 
-    model = AttentionPoolingBertClassifier(num_labels=len(label_names))
+    model = CustomDistilBERT(model_name="distilbert-base-uncased",
+                         num_labels=len(label_names),
+                         dropout=0.3)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
