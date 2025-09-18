@@ -27,4 +27,8 @@ python src/moodtunes\_train.py ^
 &nbsp; --batch-size 32
 
 
+## Project Presentation
+For system architecture and example outputs, see the [MoodTunes Presentation](assets/MoodTunes_Presentation.pdf).
+
+
 
