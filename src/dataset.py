@@ -37,15 +37,24 @@ class GoEmotionsDataset(Dataset):
         return vec
 
     def _apply_balancing(self):
-        # Naive oversampling of minority classes
-        class_counts = np.sum(np.stack(self.data["multi_hot"].values), axis=0)
+    # Naive oversampling of minority classes (capped to avoid explosion)
+        class_counts = np.sum(np.stack(self.data["multi_hot"].values), axis=0)  # float array
         max_count = int(class_counts.max())
 
         balanced_rows = []
-        for idx, row in self.data.iterrows():
+        for _, row in self.data.iterrows():
             labels = np.where(row["multi_hot"] == 1)[0]
-            # Oversample rows with rare labels
-            oversample_factor = max_count // max(1, min(class_counts[labels]))
+            if len(labels) == 0:
+                # If a row somehow has no labels, keep it once
+                oversample_factor = 1
+            else:
+                # denominator = minimum count among this row's positive labels
+                denom = int(np.min(class_counts[labels]).item() if hasattr(np.min(class_counts[labels]), "item") else np.min(class_counts[labels]))
+                denom = max(denom, 1)
+                oversample_factor = max(1, int(max_count / denom))
+                # cap to avoid memory blow-up
+                oversample_factor = min(oversample_factor, 5)
+
             balanced_rows.extend([row] * oversample_factor)
 
         self.data = pd.DataFrame(balanced_rows).reset_index(drop=True)
