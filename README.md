@@ -24,7 +24,13 @@ python src/moodtunes_train.py ^
 
 ## Project Presentation
 For system architecture and example outputs, see the  
-[MoodTunes Presentation (PDF)](assets/MoodTunes_Presentation.pdf).
+[MoodTunes Presentation (PDF)](assets/Moodtunes_Presentation.pdf).
+
+---
+
+## Project Paper
+For a full writeup of methods, experiments, and results, see the  
+[MoodTunes Paper (PDF)](assets/Moodtunes_paper.pdf).
 
 ---
 
@@ -37,7 +43,8 @@ src/
 tests/
   test_dataset.py      # Minimal dataset smoke test
 assets/
-  MoodTunes_Presentation.pdf
+  Moodtunes_Presentation.pdf
+  Moodtunes_paper.pdf
 requirements.txt
 README.md
 LICENSE
