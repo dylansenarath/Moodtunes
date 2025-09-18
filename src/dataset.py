@@ -73,8 +73,8 @@ class GoEmotionsDataset(Dataset):
         return text, labels
 
     def _simple_augment(self, text):
-        """Simple augmentation: random word duplication."""
-        words = nltk.word_tokenize(text)
+        """Simple augmentation: random word duplication (no NLTK dependency)."""
+        words = str(text).split()
         if len(words) > 3 and random.random() < 0.3:
             pos = random.randint(0, len(words) - 1)
             words.insert(pos, words[pos])
