@@ -60,7 +60,6 @@ data/
   dev.tsv
   test.tsv
 
-> These are the GoEmotions splits you used in class. Do not commit raw data.
 
 ---
 
