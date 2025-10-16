@@ -7,14 +7,14 @@ MoodTunes classifies emotions in text (e.g., social media posts, messages, comme
 
 ## Quickstart
 
-# 1. Create virtual environment
+### 1. Create virtual environment
 python -m venv .venv
 .\.venv\Scripts\activate   # Windows
 
-# 2. Install dependencies
+### 2. Install dependencies
 pip install -r requirements.txt
 
-# 3. Run training (example)
+### 3. Run training (example)
 python src/moodtunes_train.py ^
   --data-root data ^
   --epochs 5 ^
@@ -34,46 +34,10 @@ For a full writeup of methods, experiments, and results, see the
 
 ---
 
-## Repo Layout
-
-src/
-  dataset.py           # GoEmotions dataset loader
-  model.py             # DistilBERT wrapper (CustomDistilBERT)
-  moodtunes_train.py   # Training script (CLI)
-tests/
-  test_dataset.py      # Minimal dataset smoke test
-assets/
-  Moodtunes_Presentation.pdf
-  Moodtunes_paper.pdf
-requirements.txt
-README.md
-LICENSE
-
----
-
-## Dataset Setup
-This repo expects local files under data/ (not tracked by git):
-
-data/
-  emotions.txt
-  train.tsv
-  dev.tsv
-  test.tsv
-
-
----
-
-## CPU/GPU Notes
-- The code auto-selects device: cuda if available, else cpu.
-- On Windows with Python 3.13, PyTorch currently installs CPU-only. That’s fine for smoke tests.
-- If you want GPU support, create a Python 3.11/3.12 venv and install a CUDA-enabled PyTorch build.
-
----
-
 ## Quick Smoke Test
 Once your data is in data/:
 
-# Run a short 1-epoch test
+### Run a short 1-epoch test
 python -m src.moodtunes_train --data-root data --epochs 1 --batch-size 8
 
 ---
